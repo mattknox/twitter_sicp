@@ -68,6 +68,11 @@
         ((f (car l)) (cons (car l) (filter f (cdr l))))
         (filter f (cdr l))))
 
+(define (remove elt l)
+  (cond ((null? l) l)
+        ((= elt (car l)) (remove elt (cdr l)))
+        (true (cons elt (remove elt (cdr l))))))
+
 (define (nth n l)
   (if (= 0 n)
       (car l)
@@ -90,3 +95,10 @@
     (cond ((eq? msg 'done?) (> a b))
           ((eq? msg 'next) (next!))
           (#t (error "can't understand this message")))))
+
+(define (scale-list n l)
+  (if (null? l)
+      '()
+      (cons (+ n (car l))
+            (scale-list (inc n) (cdr l)))))
+

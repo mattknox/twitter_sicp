@@ -1,7 +1,9 @@
-; there are basically 3 approaches to doing a quine:
+; Deriving a quine in scheme
+; there are basically 4 approaches to doing a quine:
 ; 1 - the Perl school, where you grab the name of your file and print it.
 ; 2 - reflection, where you can get at your source a la class Foo; puts self.ruby_to_ruby; end
-; 3 - structural quining, where you build up a quine by calling a function with quoted source as an argument
+; 3 - using macros or similar
+; 4 - structural quining, where you build up a quine by calling a function with quoted source as an argument
 ; quines of the last type are the most interesting of the three to me.
 (define (... x) x)  ; this will be our placeholder for code we do not yet specify
 
