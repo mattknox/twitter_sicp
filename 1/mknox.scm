@@ -73,6 +73,7 @@
         ((= elt (car l)) (remove elt (cdr l)))
         (true (cons elt (remove elt (cdr l))))))
 
+
 (define (nth n l)
   (if (= 0 n)
       (car l)
