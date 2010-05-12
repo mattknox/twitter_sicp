@@ -2,6 +2,12 @@
 ;; 8queens in scheme
 ;;
 
+; the approach here should be to start with the empty list of safe
+; queens, and (0 1 2 ... 7) the columns in which to put them.  Grab
+; one, see if it conflicts with what's already there, if so, fail and
+; backtrack.  If it is safe, try to place the next queen with the
+; placed queen removed from the list.
+
 ;; (define (nqueens n)
 ;;   (define (int safe rest)
 ;;     (if (null? rest)
