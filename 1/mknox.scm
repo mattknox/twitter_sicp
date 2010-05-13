@@ -19,7 +19,7 @@
     (= f-results g-results)))
 
 (define (same-results f g arglists)
-  ())
+  '())
 
 ; I want to build up a test framework in scheme, using macros, so...
 (require mzlib/defmacro)
@@ -90,3 +90,12 @@
     (cond ((eq? msg 'done?) (> a b))
           ((eq? msg 'next) (next!))
           (#t (error "can't understand this message")))))
+
+(define (run-length-encode elts)
+  (define (int current count l)
+    (cond ((null? l) (list (list count current)))
+          ((= current (car l)) (int current (inc count) (cdr l)))
+          (#t (cons (list count current) (int (car l) 1 (cdr l))))))
+  (if (null? elts)
+      '()
+      (int (car elts) 1 (cdr elts))))
