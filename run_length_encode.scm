@@ -1,0 +1,8 @@
+(define (run-length-encode elts)
+  (define (int current count l)
+    (cond ((null? l) (list (list count current)))
+          ((= current (car l)) (int current (inc count) (cdr l)))
+          (#t (cons (list count current) (int (car l) 1 (cdr l))))))
+  (if (null? elts)
+      '()
+      (int (car elts) 1 (cdr elts))))
