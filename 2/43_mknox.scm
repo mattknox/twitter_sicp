@@ -10,19 +10,19 @@
 
 (define (nqueens n)
   (define (int safe rest)
-    (print safe)
-    (newline)
-    (print rest)
-    (newline)
     (if (null? rest)
         safe
         (let ((candidates (filter (lambda (x) (diag-safe? (cons x safe))) rest)))
-          (print candidates)
-          (newline)
-          (newline)
-          (find-first (lambda (val) (int (cons val safe)
-                                    (remove val rest))) candidates))))
+          (find-first-result (lambda (val) (int (cons val safe)
+                                           (remove val rest))) candidates))))
   (int '() (.. 0 (dec n))))
+
+(define (8queens rest . safe)
+  (if (null? rest)
+      safe
+      (let ((candidates (filter (lambda (x) (diag-safe? (cons x safe))) rest)))
+        (find-first-result (lambda (val) (apply 8queens (remove val rest)
+                                           (cons val safe))) candidates))))
 
 (define (diag-safe? lst)
   (define (int top bottom l)

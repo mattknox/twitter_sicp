@@ -116,3 +116,9 @@
   (cond ((null? l) #f)
         ((f (car l)) (car l))
         (#t (find-first f (cdr l)))))
+
+(define (find-first-result f l) ; return the first truthy (f elt), or #f
+  (cond ((null? l) #f)
+        ((f (car l))) ; wacky idiom.  This returns (f (car l)) if true
+        (#t (find-first-result f (cdr l)))))
+
