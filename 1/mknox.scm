@@ -122,3 +122,7 @@
         ((f (car l))) ; wacky idiom.  This returns (f (car l)) if true
         (#t (find-first-result f (cdr l)))))
 
+(define (any? f l)
+  (cond ((null? l) #f)
+        ((f (car l)) #t)
+        (else (any? f (cdr l)))))
