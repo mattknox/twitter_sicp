@@ -66,12 +66,12 @@
 (define (filter f l)
   (cond ((null? l) '())
         ((f (car l)) (cons (car l) (filter f (cdr l))))
-        (filter f (cdr l))))
+        (#t (filter f (cdr l)))))
 
 (define (remove elt l)
   (cond ((null? l) l)
         ((= elt (car l)) (remove elt (cdr l)))
-        (true (cons elt (remove elt (cdr l))))))
+        (#t (cons (car l) (remove elt (cdr l))))))
 
 
 (define (nth n l)
@@ -111,3 +111,8 @@
       '()
       (cons (+ n (car l))
             (scale-list (inc n) (cdr l)))))
+
+(define (find-first f l) ; return the first elt with true (f elt), or #f
+  (cond ((null? l) #f)
+        ((f (car l)) (car l))
+        (#t (find-first f (cdr l)))))

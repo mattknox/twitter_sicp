@@ -10,11 +10,18 @@
 
 (define (nqueens n)
   (define (int safe rest)
+    (print safe)
+    (newline)
+    (print rest)
+    (newline)
     (if (null? rest)
         safe
-        (let ((val (find-first diag-safe? (cons x safe))))
-          (and val (int (cons val safe)
-                        (remove val rest))))))
+        (let ((candidates (filter (lambda (x) (diag-safe? (cons x safe))) rest)))
+          (print candidates)
+          (newline)
+          (newline)
+          (find-first (lambda (val) (int (cons val safe)
+                                    (remove val rest))) candidates))))
   (int '() (.. 0 (dec n))))
 
 (define (diag-safe? lst)
@@ -28,9 +35,4 @@
       #t
       (int (inc (car lst))
            (dec (car lst))
-           lst)))
-
-(define (find-first f l) ; return the first elt with true (f elt), or #f
-  (cond ((null? l) #f)
-        ((f (car l)) (car l))
-        (#t (find-first f (cdr l)))))
+           (cdr lst))))

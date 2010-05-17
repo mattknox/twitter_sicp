@@ -1,3 +1,6 @@
+# This class solves the Towers of Hanoi problem.
+# The location of every disk is stored in a single array
+
 class HanoiState
   PEGS = [1, 2, 3]
   # this represents the current state of a set of towers of hanoi with
