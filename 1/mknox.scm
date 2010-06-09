@@ -126,3 +126,10 @@
   (cond ((null? l) #f)
         ((f (car l)) #t)
         (else (any? f (cdr l)))))
+
+(defmacro defop= (op)
+  (let ((name (string->symbol (string-append (symbol->string op) "="))))
+    (defmacro (var val) `(begin (set! ,var (,op ,var ,val)) ,var))))
+
+(defmacro -= (var val) `(begin (set! ,var (- ,var ,val)) ,var))
+(defmacro += (var val) `(begin (set! ,var (+ ,var ,val)) ,var))
