@@ -1,0 +1,6 @@
+(define (wrap-with-counter f)
+  (let ((count 0))
+    (lambda (x) (cond ((eq? x 'return-calls) count)
+                 ((eq? x 'reset-count) (set! count 0))
+                 (else (set! count (+ count 1))
+                       (f x))))))
