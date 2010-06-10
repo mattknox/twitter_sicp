@@ -1,6 +1,7 @@
-(mac -= (var val) `(do (= ,var (- ,var ,val)) ,var))
-(mac defop= (op) `(mac ,(sym (+ "" op "=")) (var val) ,(list 'quasiquote `(do (= ,',var (,op ,',var ,',val)) ,',var))))
+; want to make a bunch of macros like this for +=, -=, /=, *=, etc.
+; (mac -= (var val) `(do (= ,var (- ,var ,val)) ,var))
+; but that's tedious.  So instead I want to write a macro that does it.
 
-(mac defop= (op) `(mac (sym (+ "" op "=")) (var val) ,(list 'quasiquote `(do (= ,',var (,op ,',var ,',val)) ,',var))))
+(def makesym args (sym (string args)))
 
-(mac defop= (op) (list 'mac (sym (+ "" op "=")) '(var val) (list 'quasiquote `(do (= ,',var (,op ,',var ,',val)) ,',var))))
+(mac defop= (op) `(mac ,(makesym  op "=") (var val) ,(list 'quasiquote `(do (= ,',var (,op ,',var ,',val)) ,',var))))
