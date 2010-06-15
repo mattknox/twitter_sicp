@@ -1,4 +1,5 @@
-(define (monte-carlo predicate lower-x upper-x lower-y upper-y))
+(define (monte-carlo predicate trials lower-x upper-x lower-y upper-y)
+  )
 
 (define (random-point lower-x upper-x lower-y upper-y)
   (let* ((x-range (- upper-x lower-x))
