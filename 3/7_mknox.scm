@@ -1,0 +1,13 @@
+(define (make-account balance password)
+  (define (dispatch ))
+  (define (withdraw amount provided-password)
+    (cond ((not (equal? password provided-password)) "bad password")
+          ((< balance amount) "insufficient balance")
+          (else (begin (set! balance (- balance amount))
+                       balance))))
+  withdraw)
+
+(define (member? elt l)
+  (cond ((null? l) #t)
+        ((eq? elt (car l)) #t)
+        (#t (member? elt (cdr l)))))
