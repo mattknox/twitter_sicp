@@ -123,7 +123,7 @@
         (#t (find-first-result f (cdr l)))))
 
 (define (member? elt l)
-  (cond ((null? l) #f)
+  (cond ((null? l) #t)
         ((eq? elt (car l)) #t)
         (#t (member? elt (cdr l)))))
 
