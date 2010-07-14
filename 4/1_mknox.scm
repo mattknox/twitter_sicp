@@ -14,5 +14,5 @@
 (define (list-of-values-r-l exps env)
   (if (no-operands? exps)
       '()
-      (let ((x (eval (first-operand exps) env)))
-        (cons x (list-of-values (rest-operands exps) env)))))
+      (let ((xs (list-of-values (rest-operands exps) env)))
+        (cons (eval (first-operand exps) env) xs))))
