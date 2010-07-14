@@ -5,7 +5,13 @@
 ;;       (cons (eval (first-operand exps) env)
 ;;             (list-of-values (rest-operands exps) env))))
 
-(define (list-of-values exps env)
+(define (list-of-values-l-r exps env)
+  (if (no-operands? exps)
+      '()
+      (let ((x (eval (first-operand exps) env)))
+        (cons x (list-of-values (rest-operands exps) env)))))
+
+(define (list-of-values-r-l exps env)
   (if (no-operands? exps)
       '()
       (let ((x (eval (first-operand exps) env)))
